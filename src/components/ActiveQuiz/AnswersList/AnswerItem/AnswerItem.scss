@@ -10,14 +10,13 @@
         transition: all .3s;
     }
 
+    &.success {
+        background: green;
+    }
 
-&.success {
-    background: green;
-}
-
-&.error {
-    background: red;
-}
+    &.error {
+        background: red;
+    }
 
 }
 
