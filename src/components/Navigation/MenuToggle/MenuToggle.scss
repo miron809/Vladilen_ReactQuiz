@@ -1,0 +1,17 @@
+.MenuToggle {
+    box-sizing: border-box;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    transition: all .3s;
+    z-index: 100;
+    &:hover {
+        opacity: .7;
+    }
+    &.open {
+        left: 320px;
+    }
+}

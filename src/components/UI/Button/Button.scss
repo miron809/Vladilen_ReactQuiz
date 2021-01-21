@@ -1,0 +1,47 @@
+.Button {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    color: black;
+    margin-right: 15px;
+    text-transform: uppercase;
+    font-size: 12px;
+    outline: none !important;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover {
+        box-shadow: 5px 5px 4px 3px rgba(0, 0, 0, .3);
+        transform: scale(1.01);
+        transition: all .3s;
+    }
+    
+    &:active {
+        box-shadow: 3px 3px 2px 1px rgba(0, 0, 0, .4);
+        transform: scale(.99);
+        transition: all .3s;
+    }
+
+    &:disabled {
+        background: #ccc;
+        color: #000;
+        cursor: not-allowed;
+    }
+
+    &.error {
+        background: red;
+        color: white;
+    }
+
+    &.success {
+        background: green;
+        color: white;
+    }
+
+    &.primary {
+        background: blue;
+        color: white;
+    }
+}
