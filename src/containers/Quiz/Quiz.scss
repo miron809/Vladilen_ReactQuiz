@@ -4,13 +4,12 @@
     padding-top: 50px;
     flex-grow: 1;
     background: linear-gradient(90deg, #5041b2 0%, #7969e6 100%);
-}
 
-.QuizWrapper {
-    min-width: 600px;
-}
-
-h1 {
-    color: white;
-    margin-left: 10px;
+    .QuizWrapper {
+        min-width: 600px;
+        h1 {
+            color: white;
+            margin-left: 10px;
+        }
+    }
 }

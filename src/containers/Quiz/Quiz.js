@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classes from "./Quiz.module.scss";
+import "./Quiz.scss";
 import ActiveQuiz from "../../components/ActiveQuiz/ActiveQuiz";
 import FinishedQuiz from "../../components/FinishedQuiz/FinishedQuiz";
 
@@ -94,8 +94,8 @@ class Quiz extends Component {
 
   render() {
     return (
-      <div className={classes.Quiz}>
-        <div className={classes.QuizWrapper}>
+      <div className="Quiz">
+        <div className="QuizWrapper">
           <h1>Quiz</h1>
 
           {this.state.isFinished ? (
