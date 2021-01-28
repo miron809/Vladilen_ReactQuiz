@@ -12,7 +12,7 @@
     cursor: pointer;
     transition: all .3s;
 
-    &:hover:not(&:disabled) {
+    &:hover:not(:disabled, :active) {
         box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, .3);
         transform: scale(1.01);
         transition: all .3s;
