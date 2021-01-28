@@ -3,7 +3,7 @@ import "./QuizCreator.scss";
 import Button from "../../components/UI/Button/Button";
 import {
   createControl,
-  validate,
+  validateControl,
   validateForm
 } from "../../form/formFramework";
 import Input from "../../components/UI/Input/Input";
@@ -50,7 +50,7 @@ export default class QuizCreator extends Component {
 
     control.touched = true;
     control.value = value;
-    control.valid = validate(control.value, control.validation);
+    control.valid = validateControl(control.value, control.validation);
 
     formControls[controlName] = control;
 

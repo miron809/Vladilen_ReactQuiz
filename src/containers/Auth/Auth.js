@@ -2,40 +2,34 @@ import React, { Component } from "react";
 import Button from "../../components/UI/Button/Button";
 import "./Auth.scss";
 import Input from "../../components/UI/Input/Input";
-
-function validateEmail(email) {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
-}
+import { createControl, validateControl } from "../../form/formFramework";
 
 export default class Auth extends Component {
   state = {
     isFormValid: false,
     formControls: {
-      email: {
-        value: "",
-        type: "email",
-        label: "Email",
-        errorMessage: "Email is incorrect!",
-        valid: false,
-        touched: false,
-        validation: {
+      email: createControl(
+        {
+          type: "email",
+          label: "Email",
+          errorMessage: "Email is incorrect!"
+        },
+        {
           required: true,
           email: true
         }
-      },
-      password: {
-        value: "",
-        type: "password",
-        label: "Password",
-        errorMessage: "Password is incorrect!",
-        valid: false,
-        touched: false,
-        validation: {
+      ),
+      password: createControl(
+        {
+          type: "password",
+          label: "Password",
+          errorMessage: "Password is incorrect!"
+        },
+        {
           required: true,
           minLength: 6
         }
-      }
+      )
     }
   };
 
@@ -45,35 +39,13 @@ export default class Auth extends Component {
     e.preventDefault();
   };
 
-  validateControl(value, validation) {
-    if (!validation) {
-      return true;
-    }
-
-    let isValid = true;
-
-    if (validation.required) {
-      isValid = value.trim() !== "" && isValid;
-    }
-
-    if (validation.email) {
-      isValid = validateEmail(value) && isValid;
-    }
-
-    if (validation.minLength) {
-      isValid = value.length >= validation.minLength && isValid;
-    }
-
-    return isValid;
-  }
-
   onChangeHandler = (e, controlName) => {
     const formControls = { ...this.state.formControls };
     const control = { ...formControls[controlName] };
 
     control.value = e.target.value;
     control.touched = true;
-    control.valid = this.validateControl(control.value, control.validation);
+    control.valid = validateControl(control.value, control.validation);
     formControls[controlName] = control;
 
     let isFormValid = true;
