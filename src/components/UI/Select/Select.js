@@ -2,7 +2,6 @@ import React from "react";
 import "./Select.scss";
 
 const Select = (props) => {
-  console.log(props);
   const htmlFor = `${props.label}-${Math.random()}`;
   return (
     <div className="Select">

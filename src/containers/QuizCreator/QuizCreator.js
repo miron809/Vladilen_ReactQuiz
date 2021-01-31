@@ -8,6 +8,7 @@ import {
 } from "../../form/formFramework";
 import Input from "../../components/UI/Input/Input";
 import Select from "../../components/UI/Select/Select";
+import axios from "../../axios/axios-quiz";
 
 function createAnswerControl(number) {
   return createControl(
@@ -39,7 +40,7 @@ function createFormControls() {
 export default class QuizCreator extends Component {
   state = {
     quiz: [],
-    rightAnserId: 1,
+    rightAnswerId: 1,
     isFormValid: false,
     formControls: createFormControls()
   };
@@ -62,7 +63,7 @@ export default class QuizCreator extends Component {
 
   selectChangeHandler = (e) => {
     this.setState({
-      rightAnserId: +e.target.value
+      rightAnswerId: +e.target.value
     });
   };
 
@@ -86,7 +87,7 @@ export default class QuizCreator extends Component {
     const questionItem = {
       question: question.value,
       id: index,
-      rightAnserId: this.state.rightAnserId,
+      rightAnswerId: this.state.rightAnswerId,
       answers: [
         { text: answer1.value, id: answer1.id },
         { text: answer2.value, id: answer2.id },
@@ -99,14 +100,26 @@ export default class QuizCreator extends Component {
 
     this.setState({
       quiz,
-      rightAnserId: 1,
+      rightAnswerId: 1,
       isFormValid: false,
       formControls: createFormControls()
     });
   };
 
-  createQuizHandler = (e) => {
+  createQuizHandler = async (e) => {
     e.preventDefault();
+
+    try {
+      await axios.post("/quizes.json", this.state.quiz);
+      this.setState({
+        quiz: [],
+        rightAnswerId: 1,
+        isFormValid: false,
+        formControls: createFormControls()
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   renderControls() {
@@ -134,7 +147,7 @@ export default class QuizCreator extends Component {
     const select = (
       <Select
         label="Right answer"
-        value={this.state.rightAnserId}
+        value={this.state.rightAnswerId}
         onChange={this.selectChangeHandler}
         options={[
           { text: "1", value: 1 },
